@@ -38,5 +38,3 @@ st.markdown("### Overwrite HP Values")
 # They use separate keys (input_hp1 and input_hp2) and callbacks.
 st.number_input("Set Player 1 HP", key="input_hp1", value=st.session_state.hp1, step=1, on_change=overwrite_hp1)
 st.number_input("Set Player 2 HP", key="input_hp2", value=st.session_state.hp2, step=1, on_change=overwrite_hp2)
-
-st.markdown("### Modify HP Using Buttons")
