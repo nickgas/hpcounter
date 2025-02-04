@@ -40,12 +40,3 @@ st.number_input("Set Player 1 HP", key="input_hp1", value=st.session_state.hp1, 
 st.number_input("Set Player 2 HP", key="input_hp2", value=st.session_state.hp2, step=1, on_change=overwrite_hp2)
 
 st.markdown("### Modify HP Using Buttons")
-
-# Buttons to modify HP values
-col1, col2 = st.columns(2)
-with col1:
-    st.button("Increase HP1", on_click=update_hp, args=("hp1", 1))
-    st.button("Decrease HP1", on_click=update_hp, args=("hp1", -1))
-with col2:
-    st.button("Increase HP2", on_click=update_hp, args=("hp2", 1))
-    st.button("Decrease HP2", on_click=update_hp, args=("hp2", -1))
