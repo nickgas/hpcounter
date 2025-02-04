@@ -1,55 +1,28 @@
-import pygame
+import streamlit as st
 
-# Initialize pygame
-pygame.init()
+# Set up session state for HP values
+if "hp1" not in st.session_state:
+    st.session_state.hp1 = 100
+if "hp2" not in st.session_state:
+    st.session_state.hp2 = 100
 
-# Screen settings
-WIDTH, HEIGHT = 400, 300
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("HP Tracker")
+st.title("HP Tracker")
 
-# Colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (200, 0, 0)
-GREEN = (0, 200, 0)
+# Display HP values
+st.write(f"**HP1:** {st.session_state.hp1}")
+st.write(f"**HP2:** {st.session_state.hp2}")
 
-# Fonts
-font = pygame.font.Font(None, 36)
+# Buttons to modify HP values
+col1, col2 = st.columns(2)
 
-# HP values
-hp1 = 10
-hp2 = 10
+with col1:
+    if st.button("Increase HP1"):
+        st.session_state.hp1 += 1
+    if st.button("Decrease HP1"):
+        st.session_state.hp1 -= 1
 
-def draw_screen():
-    screen.fill(WHITE)
-    
-    # Render HP values
-    hp1_text = font.render(f"HP1: {hp1}", True, RED)
-    hp2_text = font.render(f"HP2: {hp2}", True, GREEN)
-    
-    # Draw text
-    screen.blit(hp1_text, (WIDTH // 2 - 50, HEIGHT // 3))
-    screen.blit(hp2_text, (WIDTH // 2 - 50, 2 * HEIGHT // 3))
-    
-    pygame.display.flip()
-
-# Main loop
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                hp1 += 1
-            elif event.key == pygame.K_DOWN:
-                hp1 -= 1
-            elif event.key == pygame.K_RIGHT:
-                hp2 += 1
-            elif event.key == pygame.K_LEFT:
-                hp2 -= 1
-    
-    draw_screen()
-    
-pygame.quit()
+with col2:
+    if st.button("Increase HP2"):
+        st.session_state.hp2 += 1
+    if st.button("Decrease HP2"):
+        st.session_state.hp2 -= 1
